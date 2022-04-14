@@ -21,9 +21,9 @@ class OpenLibraryViewModel (
 
 
 
-    public var name = ""
+    public var authorName = ""
 
-    public var isScreenRotated = false
+    public var id = ""
 
     init {
         Log.d("viewmodel","view model is created")
@@ -34,7 +34,7 @@ class OpenLibraryViewModel (
     private val _libraryData: MutableLiveData<ResultState> = MutableLiveData(ResultState.LOADING)
     val libraryData: LiveData<ResultState> get() = _libraryData
 
-    fun getAuthorByName(authorName: String) {
+    fun getAuthorByName() {
         viewModelScope.launch(ioDispatcher) {
             try {
                 val response = libraryRepository.getAuthorByName(authorName)
@@ -55,7 +55,7 @@ class OpenLibraryViewModel (
         }
     }
 
-    fun getAuthorDetails(id:String) {
+    fun getAuthorDetails() {
         viewModelScope.launch(ioDispatcher) {
             try {
                 val response = libraryRepository.getAuthorDetails(id)
@@ -76,7 +76,7 @@ class OpenLibraryViewModel (
         }
     }
 
-    fun getAuthorWorks(id:String) {
+    fun getAuthorWorks() {
         viewModelScope.launch(ioDispatcher) {
             try {
                 val response = libraryRepository.getAuthorWorks(id)
